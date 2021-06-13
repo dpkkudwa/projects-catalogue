@@ -1,0 +1,17 @@
+<mat-toolbar>
+  <span>
+    <h2 mat-dialog-title>Bulk Upload Organization</h2>
+  </span>
+<span class="fill-remaining-space"></span>
+<button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<div class="file-drop-area">
+  <form [formGroup]="service.uploadForm" (submit)="onSubmit()">
+    <div class="form-group">
+      <input formControlName="file" id="file" type="file" class="form-control" (change)="onFileChange($event)" requiredFileType="text/csv">
+    </div>
+    <mat-dialog-actions>
+      <button mat-raised-button class="mat-primary">Upload</button>
+    </mat-dialog-actions>
+  </form>
+</div>

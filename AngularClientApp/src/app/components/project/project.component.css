@@ -1,0 +1,26 @@
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+.mat-form-field {
+  display: block;
+}
+
+.mat-toolbar {
+  margin-bottom: 20px;
+}
+
+.controles-container{
+  width: 100%;
+  padding: 8%;
+}
+
+.controles-container > * {
+  width: 100%;
+}
+
+.mat-dialog-actions {
+  /* // align buttons to right as shown in Material Design guide */
+  justify-content: flex-end;
+}
