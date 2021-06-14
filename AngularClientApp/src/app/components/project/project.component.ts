@@ -10,7 +10,6 @@ import { NotificationService } from '../../shared/notification.service';
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
-  isAddMode = false;
   constructor(
     public service: ProjectService,
     public dialogRef: MatDialogRef<ProjectComponent>,
@@ -21,13 +20,14 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // On submit of the project form.
   onSubmit() {
-      if (this.service.projectForm.value.type === 'add') {
+      if (this.service.projectForm.value.type === 'add') { // If the submitted form is a new insertion.
         this.projectsService.insertProject(this.service.projectForm.value);
         this.notificationService.success(':: Submitted successfully');
         this.dialogRef.close();
       }
-      else {
+      else { // If the submitted form is to update the project.
         this.projectsService.updateProject(this.service.projectForm.getRawValue());
         this.service.projectForm.reset();
         this.service.initializeFormGroup();
@@ -37,7 +37,6 @@ export class ProjectComponent implements OnInit {
   }
 
   onClose() {
-    console.log('close');
     this.dialogRef.close();
   }
 

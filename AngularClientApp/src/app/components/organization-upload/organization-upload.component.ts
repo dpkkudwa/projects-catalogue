@@ -19,23 +19,38 @@ export class OrganizationUploadComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /*
+   * Helps the upload of the file.
+   * event: Upload event.
+   */
   onFileChange(event:any) {
     this.fileList = event.target.files;
   }
 
+  // Tracks th submit of the form.
   onSubmit(): void {
     let file = this.fileList[0];
+    // Set a new FormData object.
     let formData = new FormData();
+
+    // Add the uploaded form to the FormData object.
     formData.append('file', file);
+
+    // Call importOrganization() to send the file to NodeJs for adding to Db.
     this.projectsService.importOrganization(formData);
+
+    // Reset the form.
     this.service.uploadForm.reset();
-    this.service.initialUploadFormGroup();
+
+    // Notify the user of the upload.
     this.notificationService.success('Organization CSV Imported successfully');
+
+    // Close the dialog box.
     this.dialogRef.close();
   }
 
+  // Tracks the close of the dialog box.
   onClose() {
-    console.log('close');
     this.dialogRef.close();
   }
 

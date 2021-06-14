@@ -52,8 +52,8 @@ export class ProjectsComponent implements OnInit {
     this.fetchOrganizations();
   }
 
+  // Called when the projects CSV file is uploaded.
   onProjectFileUpload():any {
-    this.projectService.initialUploadFormGroup();
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -63,6 +63,7 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
+  // Called on organization upload.
   onOrganizationFileUpload():any {
     this.projectService.initialUploadFormGroup();
     const dialogConfig = new MatDialogConfig();
@@ -74,6 +75,7 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
+  // Called on project insert.
   onProjectInsert() : void {
     this.isAddMode = true;
     this.projectService.initializeFormGroup();
@@ -86,6 +88,7 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
+  // Called on insert of the organization.
   onOrganizationInsert(): void {
     this.organizationService.initialOrganizationFormGroup();
     const dialogConfig = new MatDialogConfig();
@@ -144,16 +147,25 @@ export class ProjectsComponent implements OnInit {
     )
   }
 
+  /*
+   * Set up the data source for the table.
+   * data: The table data from the API.
+   */
   setupDataSource(data: any) {
+    // If data is present, remove the loader.
     if (data) {
       this.loading = false;
     }
+
+    // Assign the data to the "dataSource" variable.
     this.dataSource.data = data;
+
+    // Set the paginator.
     this.dataSource.paginator = this.paginator;
   }
 
+  // Fetch the products data.
   fetchData() {
-    console.log('here');
     this.projectsService.getProducts().subscribe(
       data => {
         this.setupDataSource(data)
@@ -161,6 +173,7 @@ export class ProjectsComponent implements OnInit {
     );
   }
 
+  // Fetch the organization.
   fetchOrganizations() {
     this.projectsService.getOrganizations().subscribe(
       data => {

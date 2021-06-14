@@ -1,7 +1,8 @@
 const multer = require("multer");
 
+// Sets up disk storage for the uploaded file.
 const fileStorage = multer.diskStorage({
-  // Destination to store image
+  // Destination to store image.
   destination: '/tmp',
     filename: (req, file, cb) => {
         cb(null, file.fieldname + '_' + Date.now() + file.originalname)
